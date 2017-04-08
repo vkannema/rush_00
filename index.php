@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 	session_start();
 
@@ -17,7 +17,7 @@
 
 		<?php echo $error; ?>
 
-		<?php 
+		<?php
 			if (isset($_SESSION['loggued_on_user'])) {
 		?>
 			<h1>Hello <?php echo $_SESSION['loggued_on_user']; ?>, See our fucking :</h1>
@@ -35,7 +35,7 @@
 
 		if (isset($_GET['cat']))
 		{
-			
+
 			foreach ($products as $el) {
 				if ($el)
 				{
@@ -47,10 +47,10 @@
 						<h2><?php echo $product[0]; ?></h2>
 						<div class="price align-center">
 							<span><?php echo $product[2]; ?>$</span>
-							<a href="add.php?title=<?php echo $product[0]; ?>">ADD</a>
+							<a href="add.php?title=<?php echo $product[0]; ?>&quantite=1">ADD</a>
 						</div>
 					</div>
-					<?php 
+					<?php
 					}
 				}
 			}
@@ -67,7 +67,7 @@
 						<h2><?php echo $product[0]; ?></h2>
 						<div class="price align-center">
 							<span><?php echo $product[2]; ?>$</span>
-							<a href="add.php?title=<?php echo $product[0]; ?>">ADD</a>
+							<a href="add.php?title=<?php echo $product[0]; ?>&quantite=1">ADD</a>
 						</div>
 					</div>
 					<?php
