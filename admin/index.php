@@ -1,3 +1,14 @@
+<?php 
+
+	session_start();
+
+	if (!isset($_SESSION['loggued_on_user']))
+		header('Location: ../login.php');
+	if ($_SESSION['admin'] === "0")
+		header('Location: ../index.php');
+
+?>
+
 <?php require_once("includes/admin-header.php") ?>
 
 <div class="container">

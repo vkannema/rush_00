@@ -17,7 +17,13 @@
 
 		<?php echo $error; ?>
 
-		<h1>Hello <?php echo $_SESSION['loggued_on_user']; ?>, See our fucking :</h1>
+		<?php 
+			if (isset($_SESSION['loggued_on_user'])) {
+		?>
+			<h1>Hello <?php echo $_SESSION['loggued_on_user']; ?>, See our fucking :</h1>
+		<?php } else { ?>
+			<h1>See our fucking :</h1>
+		<?php } ?>
 
 		<div class="category">
 			<a href="index.php">All products</a>

@@ -19,7 +19,7 @@
 		<div id="logo" class="align-left">My e-boutique</div>
 		<ul class="align-right">
 			<li><a href="../index.php">Voir boutique</a></li>
-			<li><a href="logout.php">Logout</a></li>
+			<li><a href="../logout.php">Logout</a></li>
 		</ul>
 		<div class="clear"></div>
 

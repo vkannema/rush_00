@@ -18,16 +18,15 @@
 
 		<div id="logo" class="align-left">My e-boutique</div>
 		<ul class="align-right">
-			<li><a href="product.php">Panier(0)</a></li>
+			<li><a href="panier.php">Panier(0)</a></li>
+			<?php 
+				if (isset($_SESSION['loggued_on_user'])) {
+			?>
 			<?php 
 				if ($_SESSION['admin'] !== "0") {
 			?>
 			<li><a href="admin/index.php">Admin</a></li>
-			<?php 
-			}
-				if (isset($_SESSION['loggued_on_user'])) {
-			
-			?>
+			<?php } ?>
 			<li><a href="my_acc.php">Mon compte</a></li>
 			<li><a href="logout.php">Logout</a></li>
 			<?php 
