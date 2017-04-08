@@ -1,51 +1,40 @@
 <?php
 
-if ($_POST['submit'] == "OK")
+session_start();
+
+if (isset($_POST['submit']))
 {
-	$login = $_POST['login'];
-$array = unserialize(file_get_contents("private/passwd"));
-$done = 0;
-foreach ($array as $key=>$elem)
-{
-	if ($elem['login'] == $login)
+	$array = unserialize(file_get_contents("private/passwd"));
+
+	foreach ($array as $key=>$elem)
 	{
 		if (hash(whirlpool, $_POST['oldpw']) != $elem['passwd'])
 			$error = "Wrong old password";
-		if (!isset($error))
+		else if (hash(whirlpool, $_POST['oldpw']) == hash(whirlpool, $_POST['newpw']))
+			$error = "Le nouveau mot de passe doit etre different de l'ancien";
+		else if (hash(whirlpool, $_POST['conf']) != hash(whirlpool, $_POST['newpw']))
+			$error = "La confirmation et le nouveau mot de passe doivent etre les memes.";
+		else 
 		{
-			if (hash(whirlpool, $_POST['oldpw']) == hash(whirlpool, $_POST['newpw']))
-				$error = "Le nouveau mot de passe doit etre different de l'ancien";
-			if (hash(whirlpool, $_POST['conf']) != hash(whirlpool, $_POST['newpw']))
-				$error = "La confirmation et le nouveau mot de passe doivent etre les memes.";
-			if (!isset($error))
-			{
-				$array[$key]['passwd'] = hash(whirlpool, $_POST['newpw']);
-				file_put_contents("private/passwd", serialize($array));
-				$done = 1;
-				echo "OK\n";
-			}
+			$array[$key]['passwd'] = hash(whirlpool, $_POST['newpw']);
+			file_put_contents("private/passwd", serialize($array));
+			$error = "Le changement a ete effectue";
 		}
 	}
-	else
-		$error = "Mauvais login";
 }
-}
-else
-	$error = "You must validate your choice";
 
 ?>
 
-<?php session_start() ?>
 <?php require_once("admin/includes/header.php") ?>
 
 	<div class="container">
-		<h1>Changer son mot de passe</h1>
+		<h1>Mon compte - <?php echo $_SESSION['loggued_on_user']; ?></h1>
+		<h2>Changement de mot de passe</h2>
 		<form method="post" action= "my_acc.php" >
-			Identifiant: <input type="text" name="login" /></br>
 			Ancien mot de passe: <input type="password" name="oldpw" /></br>
 			Nouveau mot de passe: <input type="password" name="newpw" /></br>
 			Confirmation: <input type="password" name="conf" /></br>
-			<input type="submit" name="submit" value="OK" />
+			<input type="submit" name="submit" value="Envoyer" />
 			<?php echo $error; ?>
 		</form>
 	</div>

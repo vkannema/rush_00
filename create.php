@@ -7,11 +7,11 @@ if($_POST['submit'] == "OK" && $_POST['login'] && $_POST['passwd'])
 	}
 	if (!file_exists("private/passwd"))
 	{
-		$admin = 2;
+		$admin = "2";
 		file_put_contents("private/passwd", "");
 	}
 	else
-		$admin = 0;
+		$admin = "0";
 	$array = unserialize(file_get_contents("private/passwd"));
 	$login = $_POST['login'];
 	if ($array)
