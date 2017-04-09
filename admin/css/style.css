@@ -20,6 +20,22 @@ nav a {
 
 nav a:hover { text-decoration: underline; }
 
+form {
+	width: 500px;
+	padding: 20px 0;
+}
+
+input[type=text] {
+	width: 100%;
+	padding: 5px 0;
+	margin-bottom: 10px;
+}
+
+input[type=submit]
+{
+	margin-top: 20px;
+}
+
 footer {
 	position: fixed;
 	left: 0;

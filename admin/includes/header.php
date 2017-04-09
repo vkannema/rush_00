@@ -1,3 +1,19 @@
+<?php 
+	
+	if (file_exists("admin/db/panier.csv"))
+		$panier = file_get_contents("admin/db/panier.csv");
+	if ($panier)
+	{
+		$i = 0;
+		$items = explode("\n", $panier);
+		foreach ($items as $item) {
+			$array = explode(";", $item);
+			$i += $array[1];
+		}
+	}
+
+?>
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>

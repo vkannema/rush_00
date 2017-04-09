@@ -17,6 +17,8 @@
 
 	<ul>
 		<li><a href="list.php">Product List</a></li>
+		<li><a href="commande.php">Commandes</a></li>
+		<li><a href="category.php">Manage Category</a></li>
 	</ul>
 
 </div>

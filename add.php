@@ -15,12 +15,13 @@
 			$product = explode(";", $products[$key]);
 			if ($product[0] == $_GET['title'])
 			{
-				$q = $product[1] + 1;
+				$q = $product[1];
+				$price = $product[2];
 				unset($products[$key]);
 			}
 		}
 
-		$products[] = $_GET['title'].";".$q;
+		$products[] = $_GET['title'].";".($q + 1).";".($price + $_GET['price']);
 		$save = implode("\n", $products);
 		file_put_contents("admin/db/panier.csv", $save);
 		header('Location: index.php');
