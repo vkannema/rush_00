@@ -6,6 +6,15 @@
 	{
 		$file = file_get_contents("admin/db/product.csv");
 		$products = explode("\n", $file);
+		$panier = file_get_contents("admin/db/panier.csv");
+		if ($panier)
+		{
+			$i = 0;
+			$items = explode("\n", $panier);
+			foreach ($items as $item) {
+				$i++;
+			}
+		}
 	}
 	else
 		$error = "product.csv doesn't exist !\n";

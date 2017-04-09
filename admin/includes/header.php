@@ -18,7 +18,7 @@
 
 		<div id="logo" class="align-left">My e-boutique</div>
 		<ul class="align-right">
-			<li><a href="panier.php">Panier(0)</a></li>
+			<li><a href="panier.php">Panier(<?php if ($panier) { echo $i; } else { ?>0<?php } ?>)</a></li>
 			<?php 
 				if (isset($_SESSION['loggued_on_user'])) {
 			?>

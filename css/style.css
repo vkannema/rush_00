@@ -103,6 +103,14 @@ ul li {
 }
 .product a:hover { background-color: green; }
 
+.panier-elem {
+	width: 80%;
+	height: 20px;
+	padding: 10px 20px;
+	background-color: white;
+	margin-bottom: 15px;
+}
+
 .align-center { text-align: center; }
 .align-right { float: right; }
 .align-left { float: left; }

@@ -27,6 +27,4 @@ else
 		<a href="create.php">Se creer un compte</a>
 	</div>
 
-
-
 <?php require_once("admin/includes/footer.php") ?>
