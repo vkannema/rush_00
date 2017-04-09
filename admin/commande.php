@@ -26,15 +26,15 @@
 				$commande = explode(";", $commandes[$key]);
 				?>
 				<div class="product">
-					<b><?php echo $commande[0]; ?></b> a commande 
-					pour <b><?php echo $commande[1]; ?>$</b> ! It rocks !
+					<b><?php echo $commande[0]; ?></b> ordered 
+					for <b><?php echo $commande[1]; ?>$</b> ! It rocks !
 				</div>
 				<?php
 			}
 		}
 	}
 	else {
-		?><p>Vous n'avez encore rien vendu ! Bougez vous le cul !</p><?php
+		?><p>You sell nothing yet ! Move you ass !</p><?php
 	}
 	?>
 

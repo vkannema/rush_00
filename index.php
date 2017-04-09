@@ -20,9 +20,9 @@
 		<?php
 			if (isset($_SESSION['loggued_on_user'])) {
 		?>
-			<h1>Hello <?php echo $_SESSION['loggued_on_user']; ?>, See our fucking :</h1>
+			<h1>Hello <?php echo $_SESSION['loggued_on_user']; ?>, See our fucking stuff :</h1>
 		<?php } else { ?>
-			<h1>See our fucking :</h1>
+			<h1>See our fucking stuff :</h1>
 		<?php } ?>
 
 		<div class="category">
@@ -55,7 +55,7 @@
 						<h2><?php echo $product[0]; ?></h2>
 						<div class="price align-center">
 							<span><?php echo $product[2]; ?>$</span>
-							<a href="add.php?title=<?php echo $product[0]; ?>&price=<?php echo $product[2]; ?>">ADD</a>
+							<a href="add.php?title=<?php echo $product[0]; ?>&price=<?php echo $product[2]; ?>"><i class="icon-shopping-cart"></i> Add</a>
 						</div>
 					</div>
 					<?php
@@ -75,7 +75,7 @@
 						<h2><?php echo $product[0]; ?></h2>
 						<div class="price align-center">
 							<span><?php echo $product[2]; ?>$</span>
-							<a href="add.php?title=<?php echo $product[0]; ?>&price=<?php echo $product[2]; ?>">ADD</a>
+							<a href="add.php?title=<?php echo $product[0]; ?>&price=<?php echo $product[2]; ?>"><i class="icon-shopping-cart"></i> Add</a>
 						</div>
 					</div>
 					<?php

@@ -24,7 +24,7 @@
 				header('Location: list.php');
 			}
 			else 
-				$msg = "Choisissez au moins une categorie !";
+				$msg = "Choose at least one category !";
 		}
 		else
 			$error = "Title already exist !";

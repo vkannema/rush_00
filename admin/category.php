@@ -23,7 +23,7 @@
 			header('Location: category.php');
 		}
 		else
-			$message = " /!\ Cette categorie existe deja";
+			$message = " /!\ This category already exist !";
 	}
 
 	if (isset($_GET['del']))
