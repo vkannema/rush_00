@@ -1,26 +1,28 @@
 <?php
 session_start();
-if (file_exists("../private/passwd"))
+if (isset($_POST['submit']))
 {
-	$list = unserialize(file_get_contents("../private/passwd"));
-	foreach($list as $key => $elem)
+	if (file_exists("../private/passwd"))
 	{
-		if ($_POST['login'] == $elem['login'])
+		$list = unserialize(file_get_contents("../private/passwd"));
+		foreach($list as $key => $elem)
 		{
-			if ($elem['admin'] == $_POST['rights'])
-				$tip = "Aucun changement a faire...";
-			else
+			if ($_POST['login'] == $elem['login'])
 			{
-				$list[$key]['admin'] = $_POST['rights'];
-				$tip = "Changement effectue";
+				if ($elem['admin'] == $_POST['rights'])
+					$tip = "Aucun changement a faire...";
+				else
+				{
+					$list[$key]['admin'] = $_POST['rights'];
+					$tip = "Changement effectue";
+				}
 			}
+			file_put_contents("../private/passwd", serialize($list));
 		}
-		file_put_contents("../private/passwd", serialize($list));
+		if (!isset($tip))
+			$tip = "Login introuvable";
 	}
-	if (!isset($tip))
-		$tip = "Login introuvable";
 }
-
 ?>
 
 
@@ -66,7 +68,7 @@ if (file_exists("../private/passwd"))
 						<option value="0">0</option>
 						<option value="1">1</option>
 					</select>
-					<input type="submit" value="Change" /><?php echo $tip ?>
+					<input type="submit" name="submit" value="Change" /><?php echo $tip ?>
 				</form>
 
 </div>
