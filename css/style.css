@@ -111,9 +111,30 @@ ul li {
 	background-color: white;
 	margin-bottom: 15px;
 }
+.trash a {
+	color: red;
+	text-decoration: none;
+}
 .price {
 	height: 40px;
 	font-size: 26px;
+}
+
+form {
+	width: 500px;
+	padding: 0;
+}
+
+input[type=text],
+input[type=password] {
+	width: 100%;
+	padding: 5px 0;
+	margin-bottom: 10px;
+}
+
+input[type=submit]
+{
+	margin-top: 20px;
 }
 
 .green-button {

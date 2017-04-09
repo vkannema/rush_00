@@ -104,6 +104,10 @@ ul.admin li a:hover {
 	background-color: white;
 	margin-bottom: 15px;
 }
+.product a {
+	color: red;
+	text-decoration: none;
+}
 
 .green-button {
 	color: white;

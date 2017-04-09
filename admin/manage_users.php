@@ -10,17 +10,17 @@ if ($_POST['submit'] == "Change")
 			if ($_POST['login'] == $elem['login'])
 			{
 				if ($elem['admin'] == $_POST['rights'])
-					$tip = "Aucun changement a faire...";
+					$tip = "Nothing to change...";
 				else
 				{
 					$list[$key]['admin'] = $_POST['rights'];
-					$tip = "Changement effectue";
+					$tip = "Rights changed !";
 				}
 			}
 			file_put_contents("../private/passwd", serialize($list));
 		}
 		if (!isset($tip))
-			$tip = "Login introuvable";
+			$tip = "Login doesn't exist";
 	}
 }
 else if ($_POST['submit'] == "Delete" && $_POST['login_delete'] && $_POST['delete'])
@@ -66,7 +66,7 @@ else if ($_POST['submit'] == "Delete" && (!$_POST['login_delete'] || !$_POST['de
 			$i++;
 		}
 		if ($i === 1)
-			$message = "T'as personne mec !";
+			$message = "There is no user in the database !";
 
 	}
 
@@ -93,7 +93,7 @@ else if ($_POST['submit'] == "Delete" && (!$_POST['login_delete'] || !$_POST['de
 				Rights : <b><?php if ($user['rights'] === "1") { echo "Admin"; } else { echo "Customer"; } ?></b>
 				</div>
 				<?php	}} ?>
-				<h2>Changer les droits utilisateurs</h2>
+				<h2>Change the users's rights</h2>
 				<form method="post" action= "manage_users.php">
 					Login: <input type="text" name="login"/>
 					<label for="rights">Rights</label>

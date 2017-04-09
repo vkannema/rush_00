@@ -1,10 +1,10 @@
 <?php
-if($_POST['submit'] == "OK" && $_POST['login'] && $_POST['passwd'] && $_POST['conf'])
+if (isset($_POST['submit']) && $_POST['login'] && $_POST['passwd'] && $_POST['conf'])
 {
 	if (empty(trim($_POST['login'])))
-		$error = "Le login est invalide";
+		$error = "Wrong login";
 	if ($_POST['conf'] !== $_POST['passwd'])
-		$error = "La confirmation et le mot de passe sont differents";
+		$error = "The password and the confirmation one must be identic";
 	if (!file_exists("private/passwd"))
 	{
 		$admin = "2";
@@ -19,7 +19,7 @@ if($_POST['submit'] == "OK" && $_POST['login'] && $_POST['passwd'] && $_POST['co
 		foreach($array as $elem)
 		{
 			if ($elem['login'] == $login)
-				$error = "Identifiant deja existant";
+				$error = "Login already exist !";
 		}
 	}
 	if (!isset($error))
@@ -34,18 +34,19 @@ if($_POST['submit'] == "OK" && $_POST['login'] && $_POST['passwd'] && $_POST['co
 		exit ();
 	}
 }
-else if ($_POST['submit'] == "OK")
-	$error = "Veuillez renseigner tous les champs";
+else if (isset($_POST['submit']))
+	$error = "Please fill all the champs";
 ?>
 <?php require_once("admin/includes/header.php") ?>
 
 	<div class="container">
-		<h1>Se creer un compte</h1>
+		<a href="login.php" class="grey-button">Back</a>
+		<h1>Create an account</h1>
 		<form method="post" action= "create.php" >
-			Identifiant: <input type="text" name="login" /></br>
-			Mot de passe: <input type="password" name="passwd" /></br>
-			Confirmer le mot de passe: <input type="password" name="conf" /></br>
-			<input type="submit" name="submit" value="OK" />
+			Login: <input type="text" name="login" required /></br>
+			Password: <input type="password" name="passwd" required /></br>
+			Confirmation: <input type="password" name="conf" required /></br>
+			<input type="submit" name="submit" value="Create" />
 			<?php echo $error; ?>
 		</form>
 	</div>

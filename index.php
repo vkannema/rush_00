@@ -1,5 +1,11 @@
 <?php
 
+	if (!file_exists("admin/db"))
+	{
+		echo "Please do the installation before use it";
+		exit(0);
+	}
+
 	session_start();
 
 	if (file_exists("admin/db/product.csv"))

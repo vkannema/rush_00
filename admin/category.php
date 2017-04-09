@@ -61,7 +61,7 @@
 					<?php 
 
 						if ($value != "shoes" && $value != "t-shirt") {
-							?><a href="category.php?del=<?php echo $value; ?>">- Retirer</a><?php
+							?><a href="category.php?del=<?php echo $value; ?>">- Remove</a><?php
 						}
 					?>
 				</div>
@@ -76,7 +76,7 @@
 	<div>
 		<form action="category.php" method="POST">
 			Add a Category: <input type="text" name="cat">
-			<input type="submit" name="submit" value="Ajouter">
+			<input type="submit" name="submit" value="Add">
 			<?php echo $message; ?>
 		</form>
 	</div>

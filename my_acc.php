@@ -1,7 +1,7 @@
 <?php
 
 session_start();
-if ($_POST['submit'] == "Supprimer" && $_POST['delete'] === "SUPPRIMER")
+if ($_POST['submit'] == "Delete" && $_POST['delete'] === "DELETE")
 {
 	$list = unserialize(file_get_contents("private/passwd"));
 	foreach($list as $key => $elem)
@@ -9,7 +9,7 @@ if ($_POST['submit'] == "Supprimer" && $_POST['delete'] === "SUPPRIMER")
 		if ($elem['login'] == $_SESSION['loggued_on_user'])
 		{
 			if ($elem['passwd'] != hash(whirlpool, $_POST['passwd']))
-				$tip = "Mauvais mot de passe";
+				$tip = "Wrong password";
 			else
 			{
 				unset($list[$key]);
@@ -17,18 +17,19 @@ if ($_POST['submit'] == "Supprimer" && $_POST['delete'] === "SUPPRIMER")
 				file_put_contents("private/passwd", serialize($list));
 				unset($_SESSION['loggued_on_user']);
 				$_SESSION['admin'] = "0";
+				file_put_contents("admin/db/panier.csv", "");
 				header('Location: index.php');
 			}
 		}
 	}
 }
-else if ($_POST['submit'] == "Supprimer" && $_POST['delete'] !== "SUPPRIMER")
-	$tip = "Champ texte invalide";
+else if ($_POST['submit'] == "Delete" && $_POST['delete'] !== "DELETE")
+	$tip = "Invalid confirmation word";
 ?>
 
 <?php
 
-if (isset($_POST['submit']) && $_POST['submit'] != "Supprimer")
+if (isset($_POST['submit']) && $_POST['submit'] != "Delete")
 {
 	$array = unserialize(file_get_contents("private/passwd"));
 
@@ -37,14 +38,14 @@ if (isset($_POST['submit']) && $_POST['submit'] != "Supprimer")
 		if (hash(whirlpool, $_POST['oldpw']) != $elem['passwd'])
 			$error = "Wrong old password";
 		else if (hash(whirlpool, $_POST['oldpw']) == hash(whirlpool, $_POST['newpw']))
-			$error = "Le nouveau mot de passe doit etre different de l'ancien";
+			$error = "The new password must be different than the old one";
 		else if (hash(whirlpool, $_POST['conf']) != hash(whirlpool, $_POST['newpw']))
-			$error = "La confirmation et le nouveau mot de passe doivent etre les memes.";
+			$error = "The new password and the confirmation one must be identic";
 		else
 		{
 			$array[$key]['passwd'] = hash(whirlpool, $_POST['newpw']);
 			file_put_contents("private/passwd", serialize($array));
-			$error = "Le changement a ete effectue";
+			$error = "The changement worked !";
 		}
 	}
 }
@@ -53,28 +54,27 @@ if (isset($_POST['submit']) && $_POST['submit'] != "Supprimer")
 <?php require_once("admin/includes/header.php") ?>
 
 	<div class="container">
-		<h1>Mon compte - <?php echo $_SESSION['loggued_on_user']; ?></h1>
-		<h2>Changement de mot de passe</h2>
-		<form method="post" action= "my_acc.php" >
-			Ancien mot de passe: <input type="password" name="oldpw" /></br>
-			Nouveau mot de passe: <input type="password" name="newpw" /></br>
-			Confirmation: <input type="password" name="conf" /></br>
-			<input type="submit" name="submit" value="Envoyer" />
+		<a href="index.php" class="grey-button">Back</a>
+		<h1><?php echo ucfirst($_SESSION['loggued_on_user']); ?> account</h1>
+		<h2>Change my password</h2>
+		<form method="post" action= "my_acc.php">
+			Old password: <input type="password" name="oldpw" required /></br>
+			New password: <input type="password" name="newpw" required /></br>
+			Confirmation: <input type="password" name="conf" required /></br>
+			<input type="submit" name="submit" value="Submit" />
 			<?php echo $error; ?>
 		</form>
 	<?php if ($_SESSION['admin'] !== "2"){?>
-		<h1>Supprimer son compte</h1>
-		Mot de passe:
+		<h1>Delete my account</h1>
+		Confirm password:
 		<form method="post" action ="my_acc.php">
-			<input type="password" name= "passwd" />
-			Pour valider la suppression, entrer "SUPPRIMER" dans ce champ
-			<input type="text" name="delete" /></br>
-			<input type="submit" name="submit" value="Supprimer" />
+			<input type="password" name= "passwd" required />
+			Enter "DELETE" to confirm your action
+			<input type="text" name="delete" required /></br>
+			<input type="submit" name="submit" value="Delete" />
 			<?php echo $tip; ?>
 		</form>
 		<?php } ?>
 	</div>
-
-
 
 <?php require_once("admin/includes/footer.php") ?>

@@ -1,5 +1,11 @@
 <?php 
 
+	if (file_exists("private"))
+	{
+		echo "Error : you already install you e-shop !";
+		exit();
+	}
+
 	if (isset($_POST['submit']))
 	{
 		if ($_POST['login'] && $_POST['passwd'])
@@ -27,7 +33,7 @@
 		mkdir("admin/db", 0777);
 
 		if (!file_exists("admin/db/category.csv"))
-			file_put_contents("admin/db/category.csv", "shoes;t-shirt");
+			file_put_contents("admin/db/category.csv", "shoes;t-shirt;clothes;food");
 		else
 		{
 			echo "Error : admin/db/category.csv already exist !";
@@ -36,7 +42,7 @@
 
 		if (!file_exists("admin/db/product.csv"))
 		{
-			$products = "Converse;img/converse.jpg;49;shoes\nNike;img/nike.jpg;69;shoes\nDecathlon;img/tees.jpg;15;t-shirt";
+			$products = "Converse;img/converse.jpg;49;shoes,clothes\nNike;img/nike.jpg;69;shoes,clothes\nDecathlon;img/tees.jpg;15;t-shirt,clothes\nPate de campagne;http://p5.storage.canalblog.com/54/27/794150/84795470_o.jpg;6;food";
 			file_put_contents("admin/db/product.csv", $products);
 			header('Location: index.php');
 		}
@@ -50,17 +56,22 @@
 ?>
 
 <html>
+<head>
+	<title>Install your e-shop</title>
+	<link rel="stylesheet" href="css/style.css">
+</head>
 	<body>
 		
+	<h1>Install your e-shop</h1>
 	<form action="install.php" method="POST">
 		
-		Choisir votre login administrateur : <br>
+		Choose a SuperAdmin login : <br>
 		<input type="text" name="login" required>
 		<br>
-		Mot de passe administrateur : <br>
+		Password : <br>
 		<input type="password" name="passwd" required>
-		<br><br>
-		<input type="submit" name="submit" value="Lancer l'installation">
+		<br>
+		<input type="submit" name="submit" value="Start installation">
 
 	</form>
 

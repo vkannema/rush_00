@@ -1,30 +1,39 @@
 <?php
 include("auth.php");
-if ($_POST['login'] && $_POST['passwd'])
+
+if (isset($_POST['submit']))
 {
-	if (auth($_POST['login'], $_POST['passwd']) == TRUE)
+	if ($_POST['login'] && $_POST['passwd'])
 	{
-		$_SESSION['loggued_on_user'] = $_POST['login'];
-		header('Location: index.php');
+		if (auth($_POST['login'], $_POST['passwd']) == TRUE)
+		{
+			$_SESSION['loggued_on_user'] = $_POST['login'];
+			header('Location: index.php');
+		}
+		else
+			$error = "Wrong id or password";
 	}
 	else
-		$error = "Wrong id or password";
+		$error = "Please fill all the champs";
 }
-else
-	echo "ERROR2\n";
+
 ?>
 
 <?php require_once("admin/includes/header.php") ?>
-
+	
 	<div class="container">
-		<h1>Se connecter</h1>
+		<a href="index.php" class="grey-button">Back</a>
+		<h1>Log in</h1>
 		<form method="post" action= "login.php" >
-			Identifiant: <input type="text" name="login" /></br>
-			Mot de passe: <input type="password" name="passwd" /></br>
-			<input type="submit" name="submit" value="OK" />
+			Login: <input type="text" name="login" required/></br>
+			Password: <input type="password" name="passwd" required/></br>
+			<input type="submit" name="submit" value="Log in" />
 			<?php echo $error; ?>
 		</form>
-		<a href="create.php">Se creer un compte</a>
+		
+		<br>
+		<p>You don't have an account ?</p>
+		<a href="create.php" class="green-button">Sign in</a>
 	</div>
 
 <?php require_once("admin/includes/footer.php") ?>
