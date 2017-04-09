@@ -6,15 +6,6 @@
 	{
 		$file = file_get_contents("admin/db/product.csv");
 		$products = explode("\n", $file);
-		$panier = file_get_contents("admin/db/panier.csv");
-		if ($panier)
-		{
-			$i = 0;
-			$items = explode("\n", $panier);
-			foreach ($items as $item) {
-				$i++;
-			}
-		}
 	}
 	else
 		$error = "product.csv doesn't exist !\n";
@@ -36,8 +27,16 @@
 
 		<div class="category">
 			<a href="index.php">All products</a>
-			<a href="index.php?cat=shoes">Shoes</a>
-			<a href="index.php?cat=tees">T-shirts</a>
+			<?php 
+
+				$f_cat = file_get_contents("admin/db/category.csv");
+				$category = explode(";", $f_cat);
+
+				foreach ($category as $cat) {
+					?><a href="index.php?cat=<?php echo $cat; ?>"> <?php echo ucfirst($cat); ?> </a><?php
+				}
+
+			?>
 		</div>
 
 		<?php
@@ -56,7 +55,7 @@
 						<h2><?php echo $product[0]; ?></h2>
 						<div class="price align-center">
 							<span><?php echo $product[2]; ?>$</span>
-							<a href="add.php?title=<?php echo $product[0]; ?>&quantite=1">ADD</a>
+							<a href="add.php?title=<?php echo $product[0]; ?>&price=<?php echo $product[2]; ?>">ADD</a>
 						</div>
 					</div>
 					<?php
@@ -76,7 +75,7 @@
 						<h2><?php echo $product[0]; ?></h2>
 						<div class="price align-center">
 							<span><?php echo $product[2]; ?>$</span>
-							<a href="add.php?title=<?php echo $product[0]; ?>&quantite=1">ADD</a>
+							<a href="add.php?title=<?php echo $product[0]; ?>&price=<?php echo $product[2]; ?>">ADD</a>
 						</div>
 					</div>
 					<?php

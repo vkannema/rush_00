@@ -43,8 +43,16 @@
 		<br />
 		Category
 		<select name="category" id="">
-			<option value="shoes">Shoes</option>
-			<option value="tees">T-Shirts</option>
+		<?php 
+
+			$f_cat = file_get_contents("db/category.csv");
+			$category = explode(";", $f_cat);
+
+			foreach ($category as $cat) {
+				?><option value="<?php echo $cat; ?>"><?php echo ucfirst($cat); ?></option><?php
+			}
+
+		?>
 		</select>
 		<br />
 		<input type="submit" name="submit" value="Envoyer">
