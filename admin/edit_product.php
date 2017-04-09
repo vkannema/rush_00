@@ -16,16 +16,22 @@
 
 		if ($ret === 0)
 		{
-			$i = 0;
-			foreach ($products as $el) {
-				if (preg_match('/^'.$id.';/', $el))
-					unset($products[$i]);
-				$i++;
+			if ($_POST['category'])
+			{
+				$i = 0;
+				foreach ($products as $el) {
+					if (preg_match('/^'.$id.';/', $el))
+						unset($products[$i]);
+					$i++;
+				}
+				$str = implode(",", $_POST['category']);
+				$products[] = $_POST['title'].";".$_POST['url'].";".$_POST['price'].";".$str;
+				$save = implode("\n", $products);
+				file_put_contents("db/product.csv", $save);
+				header('Location: list.php');
 			}
-			$products[] = $_POST['title'].";".$_POST['url'].";".$_POST['price'].";".$_POST['category'];
-			$save = implode("\n", $products);
-			file_put_contents("db/product.csv", $save);
-			header('Location: list.php');
+			else 
+				$msg = "Choisissez au moins une categorie !";
 		}
 		else
 			$error = "Title already exist !";
@@ -38,7 +44,7 @@
 
 <div class="container">
 	
-	<span><a href="list.php">Back</a></span>
+	<a href="index.php" class="grey-button">Back</a>
 	<h1>Edit product</h1>
 
 	<form action="edit_product.php?title=<?php echo $_GET['title'];?>" method="POST">
@@ -49,21 +55,20 @@
 		<br />
 		Price <input type="text" name="price" value="<?php echo $_GET['price']; ?>" required>
 		<br />
-		Category
-		<select name="category" value="<?php echo $_GET['cat']; ?>">
+		Category :
 		<?php 
 
 			$f_cat = file_get_contents("db/category.csv");
 			$category = explode(";", $f_cat);
 
 			foreach ($category as $cat) {
-				?><option value="<?php echo $cat; ?>"><?php echo ucfirst($cat); ?></option><?php
+				?><input type="checkbox" name="category[]" value="<?php echo $cat; ?>"><?php echo ucfirst($cat); ?></input><?php
 			}
 
 		?>
-		</select>
 		<br />
 		<input type="submit" name="submit" value="Envoyer">
+		<?php echo $msg; ?>
 		
 	</form>
 

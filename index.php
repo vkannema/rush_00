@@ -48,7 +48,7 @@
 				if ($el)
 				{
 					$product = explode(";", $el);
-					if ($product[3] == $_GET['cat']) {
+					if (preg_match('/'. $_GET['cat'] .'/', $product[3])) {
 					?>
 					<div class="product align-left">
 						<img src="<?php echo $product[1];?>" alt="" />

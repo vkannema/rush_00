@@ -16,10 +16,10 @@
 
 		<?php echo $error; ?>
 
-		<span><a href="index.php">Back</a></span>
+		<a href="index.php" class="grey-button">Back</a>
 		<h1>Product List</h1>
 
-		<a href="add_product.php">+ Add a Product</a>
+		<a href="add_product.php" class="green-button">+ Add a Product</a>
 
 		<br /><br />
 

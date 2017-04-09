@@ -15,10 +15,16 @@
 
 		if ($ret === 0)
 		{
-			$products[] = $_POST['title'].";".$_POST['url'].";".$_POST['price'].";".$_POST['category'];
-			$save = implode("\n", $products);
-			file_put_contents("db/product.csv", $save);
-			header('Location: list.php');
+			if ($_POST['category'])
+			{
+				$str = implode(",", $_POST['category']);
+				$products[] = $_POST['title'].";".$_POST['url'].";".$_POST['price'].";".$str;
+				$save = implode("\n", $products);
+				file_put_contents("db/product.csv", $save);
+				header('Location: list.php');
+			}
+			else 
+				$msg = "Choisissez au moins une categorie !";
 		}
 		else
 			$error = "Title already exist !";
@@ -30,7 +36,7 @@
 
 <div class="container">
 	
-	<span><a href="list.php">Back</a></span>
+	<a href="list.php" class="grey-button">Back</a>
 	<h1>Add a product</h1>
 
 	<form action="add_product.php" method="POST">
@@ -42,20 +48,21 @@
 		Price <input type="text" name="price" id="" required>
 		<br />
 		Category
-		<select name="category" id="">
+		<!-- <select name="category" multiple id=""> -->
 		<?php 
 
 			$f_cat = file_get_contents("db/category.csv");
 			$category = explode(";", $f_cat);
 
 			foreach ($category as $cat) {
-				?><option value="<?php echo $cat; ?>"><?php echo ucfirst($cat); ?></option><?php
+				?><input type="checkbox" name="category[]" value="<?php echo $cat; ?>"><?php echo ucfirst($cat); ?></input><?php
 			}
 
 		?>
-		</select>
+		<!-- </select> -->
 		<br />
 		<input type="submit" name="submit" value="Envoyer">
+		<?php echo $msg; ?>	
 		
 	</form>
 	

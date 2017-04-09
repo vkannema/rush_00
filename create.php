@@ -5,8 +5,6 @@ if($_POST['submit'] == "OK" && $_POST['login'] && $_POST['passwd'] && $_POST['co
 		$error = "Le login est invalide";
 	if ($_POST['conf'] !== $_POST['passwd'])
 		$error = "La confirmation et le mot de passe sont differents";
-	if (!file_exists("private"))
-		mkdir("private");
 	if (!file_exists("private/passwd"))
 	{
 		$admin = "2";

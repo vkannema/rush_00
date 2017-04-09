@@ -14,8 +14,8 @@
 		
 	<?php echo $error; ?>
 	
-	<span><a href="index.php">Back</a></span>
-	<h1>Vos commandes</h1>
+	<a href="index.php" class="grey-button">Back</a>
+	<h1>Your Orders</h1>
 
 	<?php
 	if ($file)
@@ -27,7 +27,7 @@
 				?>
 				<div class="product">
 					<b><?php echo $commande[0]; ?></b> a commande 
-					pour <b><?php echo $commande[1]; ?>$</b> de fringues !
+					pour <b><?php echo $commande[1]; ?>$</b> ! It rocks !
 				</div>
 				<?php
 			}

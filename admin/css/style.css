@@ -20,9 +20,11 @@ nav a {
 
 nav a:hover { text-decoration: underline; }
 
+h2 { margin: 40px 0 10px 0; }
+
 form {
 	width: 500px;
-	padding: 20px 0;
+	padding: 0;
 }
 
 input[type=text] {
@@ -53,6 +55,7 @@ footer {
 	color: white;
 	padding: 16px;
 	text-transform: uppercase;
+	text-decoration: none;
 }
 
 ul {
@@ -62,6 +65,31 @@ ul {
 ul li {
 	display: inline-block;
 	margin-left: 20px;
+}
+
+ul.admin { margin-left: -56px; }
+
+ul.admin li {
+	padding: 30px 10px;
+	background-color: white;
+	box-shadow: 1px 8px 10px -5px black;
+}
+
+ul.admin li:hover {
+	background-color: #ff5454;
+}
+
+ul.admin li:hover > a{
+	color: white;
+}
+
+ul.admin li a {
+	color: black;
+	padding: 40px 20px;
+	text-decoration: none;
+}
+ul.admin li a:hover {
+	color: white;
 }
 
 .container {
@@ -75,6 +103,24 @@ ul li {
 	padding: 10px 20px;
 	background-color: white;
 	margin-bottom: 15px;
+}
+
+.green-button {
+	color: white;
+	background-color: green;
+	padding: 5px 15px;
+	border-radius: 5px;
+	font-size: 20px;
+	text-decoration: none;
+}
+
+.grey-button {
+	color: white;
+	background-color: grey;
+	padding: 5px 15px;
+	border-radius: 5px;
+	font-size: 20px;
+	text-decoration: none;
 }
 
 .align-center { text-align: center; }

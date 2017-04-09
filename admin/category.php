@@ -47,7 +47,7 @@
 		
 	<?php echo $error; ?>
 	
-	<span><a href="index.php">Back</a></span>
+	<a href="index.php" class="grey-button">Back</a>
 	<h1>Vos categories</h1>
 
 	<?php

@@ -18,7 +18,7 @@
 <html lang="fr">
 <head>
 	<meta charset="UTF-8">
-	<title>My e-commerce</title>
+	<title>My e-boutique - Rush 42</title>
 
 	<link rel="stylesheet" href="css/style.css">
 
@@ -32,7 +32,7 @@
 
 	<nav>
 
-		<div id="logo" class="align-left">My e-boutique</div>
+		<a href="index.php" id="logo" class="align-left">My e-boutique</a>
 		<ul class="align-right">
 			<li><a href="panier.php">Panier(<?php if ($panier) { echo $i; } else { ?>0<?php } ?>)</a></li>
 			<?php 
